@@ -26,11 +26,13 @@ function App() {
   const totalProductos = productosFiltrados.length;
   const precioMasAlto = Math.max(...productosFiltrados.map((p)=>p.price));
   const precioMasBajo = Math.min(...productosFiltrados.map((p)=>p.price));
+  const productoMasCaro = productosFiltrados.find((p) => p.price === precioMasAlto)?.title;
+  const productoMasBarato = productosFiltrados.find((p) => p.price === precioMasBajo)?.title;
   const sumaPrecios = productosFiltrados.reduce((total, p) => total + p.price, 0);
   const precioPromedio = totalProductos > 0 ? sumaPrecios / totalProductos : 0;
   
 
-  // Categorizar productos segun precio 
+  // Rango de productos segun precio 
   const rango_precio = {
     bajo: [],
     medio: [],
@@ -58,18 +60,14 @@ productosFiltrados.forEach(p => {
        <Encabezado/>    
             
     {/*Componente para barra de busqueda */}
-         <BarraDeBusqueda
-        value={buscador}
-        onChange={(e) => setBuscador(e.target.value)}
-        
-      />
+        <BarraDeBusqueda value={buscador} onChange={(e) => setBuscador(e.target.value)}
+        />
         
       <div className = "top-20 h-65 bg-green-100 p-6 shadow-lg rounded-lg" >
         
             {/*Se muestran categorias de productos */}
             <RangoPrecio baja= {rango_precio.bajo.length} media={rango_precio.medio.length} alta={rango_precio.alto.length}/>
-          
-          </div>
+        </div>
       
       <div className="fixed right-20 top-86 w-[400px] h-auto bg-green-200 p-6 shadow-lg rounded-lg">
         {/*Boton para mostrar Estadisticas */}
@@ -77,7 +75,7 @@ productosFiltrados.forEach(p => {
         <button  onClick={()=>setMostrar(!mostrar)}>{mostrar ? 'Ocultar info':'Mostrar info'}</button>
 
         {mostrar && (
-        <InfoEstadisticas total={totalProductos} max={precioMasAlto} min={precioMasBajo}
+        <InfoEstadisticas total={totalProductos} title={productoMasCaro} max={precioMasAlto} title_bis={productoMasBarato} min={precioMasBajo}
         prom={precioPromedio} suma={sumaPrecios}/>
                
       )}

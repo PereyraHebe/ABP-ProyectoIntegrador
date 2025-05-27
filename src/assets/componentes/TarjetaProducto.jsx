@@ -1,7 +1,4 @@
-// TarjetaProducto.jsx
-import React from "react";
-
-function TarjetaProducto({ producto, categoria }) {
+function TarjetaProducto({ producto }) {
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden">
       {producto.images && producto.images[0] && (
@@ -13,9 +10,7 @@ function TarjetaProducto({ producto, categoria }) {
         <h3 className="text-xl font-bold mb-2">{producto.title}</h3>
         <p className="text-gray-700 text-base">{producto.description}</p>
         <div className="flex justify-between items-center mt-4">
-          <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold uppercase rounded-full">
-            {categoria}
-          </span>
+          
           <span className="text-lg font-bold">${producto.price}</span>
         </div>
       </div>

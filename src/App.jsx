@@ -4,7 +4,7 @@ import "./App.css";
 //impotacion de componentes
 import TarjetaProducto from "./assets/componentes/TarjetaProducto";
 import InfoEstadisticas from "./assets/componentes/InfoEstadisticas";
-import Categorías from "./assets/componentes/Categorias";
+import RangoPrecio from "./assets/componentes/RangoPrecio";
 import Encabezado from "./assets/componentes/Encabezado";
 import BarraDeBusqueda from "./assets/componentes/BarraDeBusqueda";
 
@@ -31,7 +31,7 @@ function App() {
   
 
   // Categorizar productos segun precio 
-  const categorias = {
+  const rango_precio = {
     bajo: [],
     medio: [],
     alto: []
@@ -39,11 +39,11 @@ function App() {
 // el forEach recorre la lista de productos y los clasifica seun categorias designadas anteriormente. El push agrega el producto a la categoria.
 productosFiltrados.forEach(p => {
     if (p.price < 5000) {
-        categorias.bajo.push(p);
+        rango_precio.bajo.push(p);
     } else if (p.price >= 5000 && p.price < 15000) {
-        categorias.medio.push(p);
+        rango_precio.medio.push(p);
     } else {
-        categorias.alto.push(p);
+        rango_precio.alto.push(p);
     }
 });
 
@@ -63,13 +63,11 @@ productosFiltrados.forEach(p => {
         onChange={(e) => setBuscador(e.target.value)}
         
       />
-
-
         
       <div className = "top-20 h-65 bg-green-100 p-6 shadow-lg rounded-lg" >
         
             {/*Se muestran categorias de productos */}
-            <Categorías baja= {categorias.bajo.length} media={categorias.medio.length} alta={categorias.alto.length}/>
+            <RangoPrecio baja= {rango_precio.bajo.length} media={rango_precio.medio.length} alta={rango_precio.alto.length}/>
           
           </div>
       
@@ -86,14 +84,9 @@ productosFiltrados.forEach(p => {
       </div>
 
       {/*Se muestran productos con componente TarjetasProductos */}
-      
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-10">
-      {productosFiltrados.map((p) => {
-      const categoria = p.price < 500 ? "Bajo" : p.price < 1507 ? "Medio" : "Alto";
-      return <TarjetaProducto key={p.id} producto={p} categoria={categoria} />;
-  })}
-</div>
-  
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-10"> {productosFiltrados.map((p) => ( <TarjetaProducto key={p.id} producto={p} /> ))}
+      </div>
+   
       {/* Renderizacion condicional, búsqueda sin éxito*/}
       {productosFiltrados.length === 0 && <div className="p-4"> No se encontraron productos</div>}
          

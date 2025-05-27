@@ -1,7 +1,7 @@
 function Encabezado(){
    
   return (
-    <header className="text-gray-600 body-font">
+    <header className="text-gray-600 body-font fixed top-0 w-full bg-white shadow-md z-50" >
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="#">
           <svg
@@ -26,11 +26,11 @@ function Encabezado(){
           <span className="ml-3 text-xl">Productos de Dummyjson.com</span>
         </a>
         <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-wrap items-center text-base justify-center">
-          <a className="mr-5 hover:text-gray-900" href="#">Todos los productos</a>
-          <a className="mr-5 hover:text-gray-900" href="#">Productos por categoría</a>
-          <a className="mr-5 hover:text-gray-900" href="#">Panel de estadísticas</a>
-          <a className="mr-5 hover:text-gray-900" href="#">Opiniones </a>
-          <a className="mr-5 hover:text-gray-900" href="#">Contactanos</a>
+          <a className="mr-5 hover:text-gray-900" href="#productos">Todos los productos</a>
+          <a className="mr-5 hover:text-gray-900" href="#categorias">Productos por categoría</a>
+          <a className="mr-5 hover:text-gray-900" href="#estadisticas">Panel de estadísticas</a>
+          <a className="mr-5 hover:text-gray-900" href="#opiniones">Opiniones </a>
+          <a className="mr-5 hover:text-gray-900" href="#contacto">Contactanos</a>
         </nav>
         
       </div>

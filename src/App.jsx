@@ -53,11 +53,12 @@ productosFiltrados.forEach(p => {
 
   return (
     
-    < div className="p-10">
+    < div className="p-10" >
 
       {/*Componente para encabezado */}
       
-       <Encabezado/>    
+       <Encabezado/>   
+      <b></b> 
             
     {/*Componente para barra de busqueda */}
         <BarraDeBusqueda value={buscador} onChange={(e) => setBuscador(e.target.value)}
@@ -65,11 +66,11 @@ productosFiltrados.forEach(p => {
         
       <div className = "top-20 h-65 bg-green-100 p-6 shadow-lg rounded-lg" >
         
-            {/*Se muestran categorias de productos */}
+            {/*Se muestran rango de productos segun precio */}
             <RangoPrecio baja= {rango_precio.bajo.length} media={rango_precio.medio.length} alta={rango_precio.alto.length}/>
         </div>
       
-      <div className="fixed right-20 top-86 w-[400px] h-auto bg-green-200 p-6 shadow-lg rounded-lg">
+      <div id="estadisticas" className="fixed right-20 top-86 w-[400px] h-auto bg-green-200 p-6 shadow-lg rounded-lg">
         {/*Boton para mostrar Estadisticas */}
 
         <button  onClick={()=>setMostrar(!mostrar)}>{mostrar ? 'Ocultar info':'Mostrar info'}</button>
@@ -82,13 +83,17 @@ productosFiltrados.forEach(p => {
       </div>
 
       {/*Se muestran productos con componente TarjetasProductos */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-10"> {productosFiltrados.map((p) => ( <TarjetaProducto key={p.id} producto={p} /> ))}
+      <div id= "productos" className="grid grid-cols-2 md:grid-cols-4 gap-4 p-10"> {productosFiltrados.map((p) => ( <TarjetaProducto key={p.id} producto={p} /> ))}
       </div>
    
       {/* Renderizacion condicional, búsqueda sin éxito*/}
       {productosFiltrados.length === 0 && <div className="p-4"> No se encontraron productos</div>}
-         
+
+       <div id="opiniones"> <h5>Opiniones</h5></div> 
+       <div id="contacto"> <h5>contacto</h5></div>   
+
     </div>
+  
     
   );
 }

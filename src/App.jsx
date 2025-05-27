@@ -5,7 +5,8 @@ import "./App.css";
 import TarjetaProducto from "./assets/componentes/TarjetaProducto";
 import InfoEstadisticas from "./assets/componentes/InfoEstadisticas";
 import Categorías from "./assets/componentes/Categorias";
-
+import Encabezado from "./assets/componentes/Encabezado";
+import BarraDeBusqueda from "./assets/componentes/BarraDeBusqueda";
 
 function App() {
   const [productos, setProductos] = useState([]);
@@ -37,9 +38,9 @@ function App() {
 };
 // el forEach recorre la lista de productos y los clasifica seun categorias designadas anteriormente. El push agrega el producto a la categoria.
 productosFiltrados.forEach(p => {
-    if (p.price < 500) {
+    if (p.price < 5000) {
         categorias.bajo.push(p);
-    } else if (p.price >= 500 && p.price < 1507) {
+    } else if (p.price >= 5000 && p.price < 15000) {
         categorias.medio.push(p);
     } else {
         categorias.alto.push(p);
@@ -49,18 +50,23 @@ productosFiltrados.forEach(p => {
 
 
   return (
+    
     < div className="p-10">
-      <h1 className="text-2xl font-bold text-center mb-4 p-10" >- Proyecto Integrador - Evaluación 1 y 2</h1>
+
+      {/*Componente para encabezado */}
       
-      <div className=" text-center mb-4 p-10">
-        <h2 className="text-xl font-semibold mb-2 ">Productos de Dummyjson.com</h2>
+       <Encabezado/>    
+            
+    {/*Componente para barra de busqueda */}
+         <BarraDeBusqueda
+        value={buscador}
+        onChange={(e) => setBuscador(e.target.value)}
+        
+      />
 
-      {/*Input para el Buscador */}
 
-        <input  type="text" className="ml-2 p-2 border rounded" placeholder="Busca tu producto aqui" value={buscador} 
-         onChange={(e)=>{setBuscador(e.target.value)}}/>
-      </div>
-          <div className = "top-20 h-65 bg-green-100 p-6 shadow-lg rounded-lg" >
+        
+      <div className = "top-20 h-65 bg-green-100 p-6 shadow-lg rounded-lg" >
         
             {/*Se muestran categorias de productos */}
             <Categorías baja= {categorias.bajo.length} media={categorias.medio.length} alta={categorias.alto.length}/>

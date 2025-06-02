@@ -1,7 +1,7 @@
 function Encabezado({onClick}){
    
   return (
-    <header className="text-gray-600 body-font fixed top-0  w-full bg-gray-300 shadow-md z-50" >
+    <header className="text-gray-600 body-font relative top-0  w-full bg-gray-300 shadow-md z-50" >
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="#">
           <svg

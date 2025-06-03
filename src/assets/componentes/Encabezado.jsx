@@ -1,4 +1,4 @@
-function Encabezado({onClick}){
+function Encabezado({onClick, textoBoton}){
    
   return (
     <header className="text-gray-600 body-font relative top-0  w-full bg-gray-300 shadow-md z-50" >
@@ -32,8 +32,9 @@ function Encabezado({onClick}){
           <a className="mr-5 hover:text-gray-900" href="#opiniones">Opiniones </a>
           <a className="mr-5 hover:text-gray-900" href="#contacto">Contactanos</a>
         </nav>
-
-        <button onClick={onClick}> Modo oscuro</button>
+        <button onClick={onClick} className="px-4 py-2 rounded-md bg-indigo-500 text-white">
+          {textoBoton}
+        </button>
         
       </div>
     </header>

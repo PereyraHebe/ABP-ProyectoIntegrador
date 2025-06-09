@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import "./App.css";
-//impotacion de componentes
+//impotación de componentes
 import ListaProductos from "./assets/componentes/ListaProductos";
 import InfoEstadisticas from "./assets/componentes/InfoEstadisticas";
 import RangoPrecio from "./assets/componentes/RangoPrecio";
@@ -21,7 +21,7 @@ function App() {
 
 // agregar paginacion  * agregregue categoria y variable para categoria selecionada
   useEffect(() => {
-    axios.get("https://dummyjson.com/products/?limit=100").then((res) => {
+    axios.get("https://dummyjson.com/products/?limit=180").then((res) => {
       setProductos(res.data.products);
     });
   }, []);
@@ -112,7 +112,7 @@ productosFiltrados.forEach(p => {
       {productosFiltrados.length === 0 && <div className="p-4"> No se encontraron productos</div>}
 
       {/*Se muestran estadisticas */}
-      <div id="estadisticas" className="top-20 h-auto bg-gray-500 p-6 shadow-lg rounded-lg">
+      <div id="estadisticas" className="top-20 h-auto bg-gray-300 p-6 shadow-lg rounded-lg">
 
         {/*Boton para mostrar Estadisticas */}
 

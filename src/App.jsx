@@ -21,7 +21,7 @@ function App() {
 
 // agregar paginacion  * agregregue categoria y variable para categoria selecionada
   useEffect(() => {
-    axios.get("https://dummyjson.com/products").then((res) => {
+    axios.get("https://dummyjson.com/products/?limit=100").then((res) => {
       setProductos(res.data.products);
     });
   }, []);
@@ -78,23 +78,30 @@ productosFiltrados.forEach(p => {
         {/*Componente para barra de busqueda */}
         <BarraDeBusqueda value={buscador} onChange={(e) => setBuscador(e.target.value)}
         />
-        <div className="flex justify-center items-center">
-          <select
-  value={categoriaSeleccionada}
-  onChange={(e) => setCategoriaSeleccionada(e.target.value)}
-  className="p-2 border border-gray-300 rounded"
->
-  <option value="">Todas las categorías</option>
-  <option value="fragrances">Fragrances</option>
-  <option value="groceries">Groceries</option>
-  <option value="furniture">Furniture</option>
-</select>
-
-        </div>
+      
         
-      {/*Se muestran rango de productos segun precio */}
+      {/*Se muestran rango de productos segun precio y se agrega filtrado por categoria */}
       <div className = "top-10 mb-4 h-auto bg-gray-500 p-6 shadow-lg rounded-lg" >
-        <RangoPrecio baja= {rango_precio.bajo.length} media={rango_precio.medio.length} alta={rango_precio.alto.length}/>
+        <h2 className="text-2xl font-bold mb-4">Filtrar productos</h2>
+         <div id="categorias" className="flex justify-center items-center">
+          <select value={categoriaSeleccionada} onChange={(e) => setCategoriaSeleccionada(e.target.value)}
+            className="p-2 border border-gray-300 rounded mb-4">
+             <option value="">Todas las categorías</option>
+              
+              <option value="fragrances">Fragrances</option>
+              <option value="skincare">Skincare</option>
+              <option value="groceries">Groceries</option>
+              <option value="home-decoration">Home Decoration</option>
+              <option value="furniture">Furniture</option>
+              <option value="tops">Tops</option>
+              <option value="women's-dresses">Women's Dresses</option>
+              <option value="women's-shoes">Women's Shoes</option>
+              <option value="men's-shirts">Men's Shirts</option>
+      
+  
+          </select>
+        </div>
+           <RangoPrecio baja= {rango_precio.bajo.length} media={rango_precio.medio.length} alta={rango_precio.alto.length}/>
       </div>
       
       {/*Se muestran productos con componente ListaProductos*/}

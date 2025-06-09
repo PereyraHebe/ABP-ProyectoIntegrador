@@ -11,6 +11,7 @@ import BarraDeBusqueda from "./assets/componentes/BarraDeBusqueda";
 function App() {
   //Estados
   const [productos, setProductos] = useState([]);
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
   const [buscador, setBuscador] = useState("");
   const [mostrar, setMostrar] = useState(false)
   const [modoOscuro, setModoOscuro] = useState(false);
@@ -18,15 +19,18 @@ function App() {
   //Referencias
   const containerRef = useRef(null);
 
-// agregar paginacion
+// agregar paginacion  * agregregue categoria y variable para categoria selecionada
   useEffect(() => {
-    axios.get("https://dummyjson.com/products?limit=180").then((res) => {
+    axios.get("https://dummyjson.com/products").then((res) => {
       setProductos(res.data.products);
     });
   }, []);
 
-  //filtracion de productos 
-  const productosFiltrados= productos.filter((p)=>p.title.toLowerCase().includes(buscador.toLowerCase()))
+  //filtracion de productos * agregue filtrado por categoria seleccionada
+  const productosFiltrados= productos
+    .filter((p) => categoriaSeleccionada ? p.category === categoriaSeleccionada : true)
+    .filter((p)=>p.title.toLowerCase().includes(buscador.toLowerCase()))
+    .sort((a, b) => a.price - b.price); // agregue sort para ordenar los productos de mas barato a mas caro;
   
   // calcular total de productos, precio mas alto, precio mas bajo (con nombre y precio), summar todos los precios y asi calcular precio promedio
   const totalProductos = productosFiltrados.length;
@@ -74,6 +78,19 @@ productosFiltrados.forEach(p => {
         {/*Componente para barra de busqueda */}
         <BarraDeBusqueda value={buscador} onChange={(e) => setBuscador(e.target.value)}
         />
+        <div className="flex justify-center items-center">
+          <select
+  value={categoriaSeleccionada}
+  onChange={(e) => setCategoriaSeleccionada(e.target.value)}
+  className="p-2 border border-gray-300 rounded"
+>
+  <option value="">Todas las categorías</option>
+  <option value="fragrances">Fragrances</option>
+  <option value="groceries">Groceries</option>
+  <option value="furniture">Furniture</option>
+</select>
+
+        </div>
         
       {/*Se muestran rango de productos segun precio */}
       <div className = "top-10 mb-4 h-auto bg-gray-500 p-6 shadow-lg rounded-lg" >

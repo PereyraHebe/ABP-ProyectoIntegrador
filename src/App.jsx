@@ -70,7 +70,7 @@ productosFiltrados.forEach(p => {
       <div className="p-10"> 
         {/*Componente para encabezado */}
       
-        <Encabezado onClick={toggleModoOscuro} textoBoton={modoOscuro ? "Mostrar Modo Claro" : "Mostrar Modo Oscuro"} />
+        <Encabezado onClick={toggleModoOscuro} textoBoton={modoOscuro ? "Modo Claro" : "Modo Oscuro"} />
   
       
         <b></b> 

@@ -24,29 +24,23 @@ function InfoEstadisticas(props) {
     plugins: {
       legend: { position: "top" },
       title: { display: true, text: "Estadísticas de Productos" },
-      scales: {
-    x: {
-      grid: {
-        color: "#555555", // Color de líneas de cuadrícula en eje X
+    },
+    scales: {
+      x: {
+        grid: { color: "#555555" },
+        ticks: { color: "#444444" },
       },
-      ticks: {
-        color: "#FFFFFF", // Color de etiquetas en eje X
+      y: {
+        grid: { color: "#555555" },
+        ticks: {
+          color: "#444444",
+          stepSize: 30,
+          min: 0,
+          max: 300,
+        },
       },
     },
-    y: {
-      grid: {
-        color: "#555555", // Color de líneas de cuadrícula en eje Y
-        },
-      ticks: {
-        color: "#FFFFFF", // Color de etiquetas en eje Y
-        stepSize: 20,
-        min: 0,
-        max: 300,
-        },
-       },
-    },
-  },
-};
+  };
 
   return (
     <div className="p-5">

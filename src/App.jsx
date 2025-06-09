@@ -16,6 +16,7 @@ function App() {
   const [mostrar, setMostrar] = useState(false)
   const [modoOscuro, setModoOscuro] = useState(false);
   const [pagina, setPagina] = useState(1); 
+  const [formato, setFormato] = useState ("");
 
   //Referencias
   const containerRef = useRef(null);
@@ -148,7 +149,15 @@ productosFiltrados.forEach(p => {
       </div>
 
 
-       <div id="opiniones"> <h5>Opiniones- En construcción</h5></div> 
+       <div id="descargas">
+        <h5>Descargas- En construcción</h5>
+        <select>
+          <option value="">Seleccione un formato</option>
+          <option value="json">JSON</option>
+          <option value="excel">Excel</option>
+          <option value="csv">CSV</option>
+        </select>
+        </div> 
        <div id="contacto"> <h5>contacto- En construcción </h5></div>   
 
       </div>

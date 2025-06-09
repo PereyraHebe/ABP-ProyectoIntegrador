@@ -110,7 +110,7 @@ productosFiltrados.forEach(p => {
       <div className="mb-4">
         <button  className="px-4 py-2 bg-gray-500 text-white rounded disabled:bg-gray-300"disabled={pagina === 1} onClick={() => setPagina(pagina - 1)}> Anterior </button>
         <p className="inline-block mx-2">Página {pagina}</p>      
-        <button className="px-4 py-2 bg-gray-500 text-white rounded disabled:bg-gray-300" disabled={pagina === 10}  onClick={() => setPagina(pagina + 1)}> Siguiente </button>
+        <button className="px-4 py-2 bg-gray-500 text-white rounded disabled:bg-gray-300" disabled={totalProductos < {limite}}  onClick={() => setPagina(pagina + 1)}> Siguiente </button>
       </div>
       
       {/*Se muestran productos con componente ListaProductos*/}
@@ -148,8 +148,8 @@ productosFiltrados.forEach(p => {
       </div>
 
 
-       <div id="opiniones"> <h5>Opiniones</h5></div> 
-       <div id="contacto"> <h5>contacto</h5></div>   
+       <div id="opiniones"> <h5>Opiniones- En construcción</h5></div> 
+       <div id="contacto"> <h5>contacto- En construcción </h5></div>   
 
       </div>
     </div>

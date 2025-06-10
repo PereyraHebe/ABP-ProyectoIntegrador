@@ -30,7 +30,6 @@ function Encabezado({onClick, textoBoton}){
           <a className="mr-5 hover:text-gray-900" href="#categorias">Productos por categoría</a>
           <a className="mr-5 hover:text-gray-900" href="#estadisticas">Panel de estadísticas</a>
           <a className="mr-5 hover:text-gray-900" href="#descargas">Descargas </a>
-          <a className="mr-5 hover:text-gray-900" href="#contacto">Contactanos</a>
         </nav>
         <button onClick={onClick} className="px-4 py-2 rounded-md bg-indigo-500 text-white">
           {textoBoton}

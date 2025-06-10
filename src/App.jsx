@@ -141,7 +141,7 @@ const triggerDownload = (url, filename) => {
       <div className="mb-4">
         <button  className="px-4 py-2 bg-gray-500 text-white rounded disabled:bg-gray-300"disabled={pagina === 1} onClick={() => setPagina(pagina - 1)}> Anterior </button>
         <p className="inline-block mx-2">Página {pagina}</p>      
-        <button className="px-4 py-2 bg-gray-500 text-white rounded disabled:bg-gray-300" disabled={totalProductos < {limite}}  onClick={() => setPagina(pagina + 1)}> Siguiente </button>
+        <button className="px-4 py-2 bg-gray-500 text-white rounded disabled:bg-gray-300" disabled={ productos < {limite}}  onClick={() => setPagina(pagina + 1)}> Siguiente </button>
       </div>
       
       {/*Se muestran productos con componente ListaProductos*/}
@@ -178,7 +178,7 @@ const triggerDownload = (url, filename) => {
         </select>
         <button onClick={handleExport} className="px-4 py-2 bg-gray-500 text-black rounded disabled:bg-gray-300" disabled={!formato}>Exportar</button>
         </div> 
-       <div id="contacto"> <h5>contacto- En construcción </h5></div>   
+       
 
       </div>
     </div>

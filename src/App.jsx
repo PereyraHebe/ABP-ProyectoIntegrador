@@ -66,6 +66,36 @@ productosFiltrados.forEach(p => {
     setModoOscuro(!modoOscuro);
     containerRef.current.classList.toggle("modo-oscuro");
    };
+ // Función para exportar productos filtrados
+ const handleExport = () => {
+    let contenido;
+    let nombreArchivo;
+
+    if (formato === "json") {
+        contenido = JSON.stringify(productosFiltrados, null, 2);
+        nombreArchivo = "productos.json";
+    } else if (formato === "csv") {
+        contenido = productosFiltrados.map(p => Object.values(p).join(",")).join("\n");
+        nombreArchivo = "productos.csv";
+    } else if (formato === "excel") {
+        contenido = productosFiltrados.map(p => Object.values(p).join("\t")).join("\n");
+        nombreArchivo = "productos.xls"; 
+    }
+
+    const blob = new Blob([contenido], { type: "application/octet-stream" }); // Tipo genérico
+    const url = URL.createObjectURL(blob);
+    triggerDownload(url, nombreArchivo);
+};
+
+const triggerDownload = (url, filename) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
+
 
   return (
 
@@ -121,19 +151,7 @@ productosFiltrados.forEach(p => {
       {/* Renderizacion condicional, búsqueda sin éxito*/}
       {productosFiltrados.length === 0 && <div className="p-4"> No se encontraron productos</div>}
 
-      {/* boton para paginación despues de productos*/}
-
-      <div className="mb-4">
-        <button  className="px-4 py-2 bg-gray-500 text-white rounded disabled:bg-gray-300"disabled={pagina === 1} onClick={() => setPagina(pagina - 1)}> Anterior </button>
-        <p className="inline-block mx-2">Página {pagina}</p>      
-        <button className="px-4 py-2 bg-gray-500 text-white rounded disabled:bg-gray-300" disabled={totalProductos < {limite}}  onClick={() => setPagina(pagina + 1)}> Siguiente </button>
-      
-
-        {/* Ver la condicion para que el boton no se muestre cuando filtras por categorias <button className="px-4 py-2 bg-gray-500 text-white rounded  disabled:bg-gray-300" 
-          disabled={productosFiltrados.length < {limite} || productosFiltrados.filter(p => p.category === categoriaSeleccionada).length < {limite} } 
-          onClick={() => setPagina(pagina + 1)}> Siguiente </button>*/}
-      </div>
-         
+               
       {/*Se muestran estadisticas */}
       <div id="estadisticas" className="top-20 h-auto bg-gray-300 p-6 shadow-lg rounded-lg">
 
@@ -149,14 +167,16 @@ productosFiltrados.forEach(p => {
       </div>
 
 
-       <div id="descargas">
-        <h5>Descargas- En construcción</h5>
-        <select>
+       <div id="descargas"  className="top-20 h-auto bg-gray-500 p-6 shadow-lg rounded-lg">
+        <h5>Descargas- </h5>
+        <select onChange={(e) => setFormato(e.target.value)} value={formato}>
+        
           <option value="">Seleccione un formato</option>
           <option value="json">JSON</option>
           <option value="excel">Excel</option>
           <option value="csv">CSV</option>
         </select>
+        <button onClick={handleExport} className="px-4 py-2 bg-gray-500 text-black rounded disabled:bg-gray-300" disabled={!formato}>Exportar</button>
         </div> 
        <div id="contacto"> <h5>contacto- En construcción </h5></div>   
 
